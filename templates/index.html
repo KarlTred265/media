@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for post in posts %}
+        <article class="post">
+            {% if post.image %}
+                <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image">
+            {% endif %}
+            <header class="post-header">
+                <h2 class="post-title">
+                    <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a>
+                </h2>
+                <p class="post-meta">Posted by {{ post.author }} on {{ post.created_on }}</p>
+            </header>
+            <div class="post-content">
+                {{ post.content | safe | linebreaks }}
+            </div>
+        </article>
+    {% empty %}
+        <p>No posts yet.</p>
+    {% endfor %}
+{% endblock %}

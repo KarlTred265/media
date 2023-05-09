@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}{{ object.title }}{% endblock %}
+
+{% block content %}
+    <article class="post">
+        <header class="post-header">
+            <h1 class="post-title">{{ object.title }}</h1>
+            <p class="post-meta">Posted by {{ object.author }} on {{ object.created_on }}</p>
+        </header>
+        {% if object.image %}
+            <img src="{{object.image}}"
